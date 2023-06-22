@@ -29,7 +29,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[auth](../README.md#Author)
 
 ### HTTP request headers
 
@@ -58,7 +58,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[auth](../README.md#Author)
 
 ### HTTP request headers
 
@@ -87,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[auth](../README.md#Author)
 
 ### HTTP request headers
 
@@ -117,7 +117,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[auth](../README.md#Author)
 
 ### HTTP request headers
 

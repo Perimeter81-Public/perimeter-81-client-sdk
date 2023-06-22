@@ -3,7 +3,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**GcregionId** | **string** | cpRegion ID. | [optional] [default to null]
+**CpRegionId** | **string** | cpRegion ID. | [default to null]
+**RegionID** | **string** | Region ID. | [default to null]
 **InstanceCount** | **int32** | Desired number of instances in region. | [default to null]
 **Idle** | **bool** | Create the gateway as disabled if true. | [default to false]
 

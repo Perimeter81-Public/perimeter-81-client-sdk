@@ -56,7 +56,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[bearer](../README.md#bearer)
+[auth](../README.md#Author)
 
 ### HTTP request headers
 

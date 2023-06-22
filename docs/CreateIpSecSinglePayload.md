@@ -13,6 +13,11 @@ Name | Type | Description | Notes
 **RegionID** | **string** | Region ID | [default to null]
 **GatewayID** | **string** | Gatwway ID | [default to null]
 **TunnelName** | **string** |  | [default to null]
+**KeyExchange** | **string** |  | [default to null]
+**IkeLifeTime** | **string** |  | [default to null]
+**Lifetime** | **string** |  | [default to null]
+**DpdDelay** | **string** |  | [default to null]
+**DpdTimeout** | **string** |  | [default to null]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

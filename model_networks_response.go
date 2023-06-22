@@ -8,6 +8,7 @@
  */
 package perimeter81sdk
 
-type RemoveRegionDto struct {
-	RegionId string `json:"regionId,omitempty"`
+type NetworksResponse struct {
+	// DNS of the network.
+	Networks []Network `json:"data"`
 }

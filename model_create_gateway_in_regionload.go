@@ -8,11 +8,9 @@
  */
 package perimeter81sdk
 
-type CreateRegionInNetworkload struct {
-	// cpRegion ID.
-	CpRegionId string `json:"regionId"`
+type CreateGatewayInRegionload struct {
 	// Region ID.
-	RegionID string
+	RegionID string `json:"regionId"`
 	// Desired number of instances in region.
 	InstanceCount int32 `json:"instanceCount"`
 	// Create the gateway as disabled if true.

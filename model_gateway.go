@@ -8,6 +8,8 @@
  */
 package perimeter81sdk
 
-type RemoveRegionDto struct {
-	RegionId string `json:"regionId,omitempty"`
+type Gateway struct {
+	Idle bool
+	Name string
+	Id   string
 }

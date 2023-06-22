@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **DisplayName** | **string** |  | [optional] [default to null]
 **Name** | **string** |  | [optional] [default to null]
 **ClassName** | **string** |  | [optional] [default to null]
-**ObjectName** | **string** |  | [optional] [default to null]
+**ObjectId** | **string** |  | [optional] [default to null]
 **CreatedAt** | **string** |  | [optional] [default to null]
 **UpdatedAt** | **string** |  | [optional] [default to null]
 **Id** | **string** |  | [optional] [default to null]

@@ -3,9 +3,9 @@ info:
   title: Perimeter81 Public API
   description: The YAML for Preimeter81 Public API.
   contact: {}
-  version: 1.0.0
+  version: 1.0.2
 servers:
-- url: https://virtserver.swaggerhub.com/perimeter81/public-api-yaml/1.0.0
+- url: https://virtserver.swaggerhub.com/perimeter81/public-api-yaml/1.0.2
   description: SwaggerHub API Auto Mocking
 - url: https://api.perimeter81.com/api/rest
   description: Perimeter81 API Auto Mocking

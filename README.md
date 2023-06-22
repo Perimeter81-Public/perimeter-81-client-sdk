@@ -90,8 +90,6 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
-## bearer
-
 ## Author
 
 ```

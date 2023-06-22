@@ -94,4 +94,7 @@ Class | Method | HTTP request | Description
 
 ## Author
 
-
+```
+apiKey := "XXXXXXXXXXXXXXXX" 
+client := perimeter81.NewAPIClient(perimeter81.NewConfiguration(apiKey))
+```

@@ -29,9 +29,9 @@ type Configuration struct {
 	HTTPClient      *http.Client
 }
 
-func NewConfiguration(apiKey string) *Configuration {
+func NewConfiguration(apiKey string, basePath string) *Configuration {
 	cfg := &Configuration{
-		BasePath:      "https://api.perimeter81.biz/api/rest",
+		BasePath:      basePath,
 		DefaultHeader: make(map[string]string),
 		UserAgent:     "Swagger-Codegen/1.0.2/go",
 		ApiKey:        APIKey{Key: apiKey},

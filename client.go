@@ -298,7 +298,7 @@ func (c *APIClient) prepareRequest(
 		// API Key Authentication
 
 		if c.cfg.BearerTokenData == nil || c.cfg.BearerTokenData.AccessTokenExpire <= time.Now().Unix() {
-			if token, err := c.GetBearerTokenFromApiKey(c.cfg.ApiKey.Key); err != nil {
+			if token, err := c.GetBearerTokenFromApiKey(c.cfg.ApiKey.Key, c.cfg.BasePath); err != nil {
 				return nil, err
 			} else {
 				c.cfg.BearerTokenData = token
@@ -454,10 +454,10 @@ func CacheExpires(r *http.Response) time.Time {
 }
 
 // Get bearer token incase of apike usage.
-func (c *APIClient) GetBearerTokenFromApiKey(apiKey string) (bearerTokenData *TokenData, err error) {
+func (c *APIClient) GetBearerTokenFromApiKey(apiKey string, baseUrl string) (bearerTokenData *TokenData, err error) {
 
 	// create path and map variables
-	localVarPath := "https://api.perimeter81.biz/api/v1/auth/authorize"
+	localVarPath := baseUrl + "v1/auth/authorize"
 
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := url.Values{}

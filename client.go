@@ -457,6 +457,7 @@ func CacheExpires(r *http.Response) time.Time {
 func (c *APIClient) GetBearerTokenFromApiKey(apiKey string, baseUrl string) (bearerTokenData *TokenData, err error) {
 
 	// create path and map variables
+	baseUrl = strings.Replace(baseUrl, "/rest", "", -1)
 	localVarPath := baseUrl + "/v1/auth/authorize"
 
 	localVarHeaderParams := make(map[string]string)

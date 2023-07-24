@@ -96,6 +96,6 @@ Class | Method | HTTP request | Description
 
 ```golang
 apiKey := "XXXXXXXXXXXXXXXX"
-basePath := "https://api.perimeter81.biz/api/rest"
+basePath := "https://api.perimeter81.com/api/rest"
 client := perimeter81.NewAPIClient(perimeter81.NewConfiguration(apiKey, basePath))
 ```

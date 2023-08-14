@@ -10,6 +10,6 @@ package perimeter81sdk
 
 type RemoveRegionPayload struct {
 	// Region ID.
-	RegionId  string                  `json:"id,omitempty"`
+	RegionId  string                  `json:"regionId,omitempty"`
 	Instances []RemoveInstancePayload `json:"instances,omitempty"`
 }

@@ -19,6 +19,7 @@ type IpSecSingleTunnel struct {
 	RemotePublicIP       string      `json:"remotePublicIP,omitempty"`
 	KeyExchange          string      `json:"keyExchange,omitempty"`
 	IkeLifeTime          string      `json:"ikeLifeTime,omitempty"`
+	LifeTime	         string      `json:"lifetime,omitempty"`
 	DpdDelay             string      `json:"dpdDelay,omitempty"`
 	DpdTimeout           string      `json:"dpdTimeout,omitempty"`
 	RemoteID             string      `json:"remoteID,omitempty"`

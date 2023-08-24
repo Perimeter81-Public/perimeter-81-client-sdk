@@ -9,6 +9,12 @@
 package perimeter81sdk
 
 type IpSecRedundantTunnel struct {
-	GatewayID string `json:"gatewayID,omitempty"`
-	TunnelID  string `json:"tunnelID,omitempty"`
+	GatewayID         string  `json:"gatewayID,omitempty"`
+	TunnelID          string  `json:"tunnelID,omitempty"`
+	Passphrase        string  `json:"passphrase,omitempty"`
+	P81GWinternalIP   string  `json:"p81GWinternalIP,omitempty"`
+	RemoteGWinernalIP string  `json:"remoteGWinernalIP,omitempty"`
+	RemotePublicIP    string  `json:"remotePublicIP,omitempty"`
+	RemoteASN         float64 `json:"remoteASN,omitempty"`
+	RemoteID          string  `json:"remoteID,omitempty"`
 }

@@ -12,7 +12,7 @@ type CreateRegionInNetworkload struct {
 	// cpRegion ID.
 	CpRegionId string `json:"regionId"`
 	// Region ID.
-	RegionID string
+	RegionID string `json:",omitempty"`
 	// Create the gateway as disabled if true.
 	Idle bool `json:"idle"`
 }

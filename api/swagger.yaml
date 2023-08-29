@@ -2625,18 +2625,12 @@ components:
     CreateRegionInNetworkload:
       required:
       - idle
-      - instanceCount
       - regionId
       type: object
       properties:
         gcregionId:
           type: string
           description: cpRegion ID.
-        instanceCount:
-          maximum: 20
-          minimum: 1
-          type: integer
-          description: Desired number of instances in region.
         idle:
           type: boolean
           description: Create the gateway as disabled if true.

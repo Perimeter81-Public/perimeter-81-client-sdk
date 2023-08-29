@@ -13,8 +13,6 @@ type CreateRegionInNetworkload struct {
 	CpRegionId string `json:"regionId"`
 	// Region ID.
 	RegionID string
-	// Desired number of instances in region.
-	InstanceCount int32 `json:"instanceCount"`
 	// Create the gateway as disabled if true.
 	Idle bool `json:"idle"`
 }

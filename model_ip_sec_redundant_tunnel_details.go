@@ -13,6 +13,6 @@ type IpSecRedundantTunnelDetails struct {
 	P81GWinternalIP   string  `json:"p81GWinternalIP,omitempty"`
 	RemoteGWinernalIP string  `json:"remoteGWinernalIP,omitempty"`
 	RemotePublicIP    string  `json:"remotePublicIP,omitempty"`
-	RemoteASN         string `json:"remoteASN,omitempty"`
+	RemoteASN         float64 `json:"remoteASN,omitempty"`
 	RemoteID          string  `json:"remoteID,omitempty"`
 }

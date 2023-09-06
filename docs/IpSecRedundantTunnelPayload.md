@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 **P81GWinternalIP** | **string** |  | [optional] [default to null]
 **RemoteGWinernalIP** | **string** |  | [optional] [default to null]
 **RemotePublicIP** | **string** |  | [optional] [default to null]
-**RemoteASN** | **float64** |  | [optional] [default to null]
+**RemoteASN** | **string** |  | [optional] [default to null]
 **RemoteID** | **string** |  | [optional] [default to null]
 **GatewayID** | **string** |  | [optional] [default to null]
 

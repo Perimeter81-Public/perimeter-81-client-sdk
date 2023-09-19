@@ -13,5 +13,5 @@ type Gateway struct {
 	Name string
 	Id   string
 	Ip   string
-	dns  string
+	Dns  string
 }

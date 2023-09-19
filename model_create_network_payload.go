@@ -15,4 +15,6 @@ type CreateNetworkPayload struct {
 	Name string `json:"name"`
 	// List of network tags.
 	Tags []string `json:"tags"`
+	// Network dns.
+	Dns string `json:",omitempty"`
 }

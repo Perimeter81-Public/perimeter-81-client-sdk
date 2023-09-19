@@ -15,4 +15,8 @@ type CreateRegionInNetworkload struct {
 	RegionID string `json:",omitempty"`
 	// Create the gateway as disabled if true.
 	Idle bool `json:"idle"`
+	// Region name.
+	Name string `json:",omitempty"`
+	// Region dns.
+	Dns string `json:",omitempty"`
 }

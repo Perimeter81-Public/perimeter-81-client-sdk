@@ -12,4 +12,6 @@ type Gateway struct {
 	Idle bool
 	Name string
 	Id   string
+	Ip   string
+	dns  string
 }

@@ -19,6 +19,7 @@ type NetworkTunnel struct {
 	// ID of the network region.
 	Region             string     `json:"region"`
 	RequestConfigToken string     `json:"requestConfigToken"`
+	Vault              string     `json:"vault"`
 	Type_              string     `json:"type"`
 	HaTunnelID         HaTunnelId `json:"haTunnelID,omitempty"`
 	// Unique ID.

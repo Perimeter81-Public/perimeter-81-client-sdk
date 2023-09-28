@@ -16,12 +16,14 @@ type WireguardTunnel struct {
 	// Region ID
 	RegionID string `json:"regionID"`
 	// Gatwway ID
-	GatewayID      string    `json:"gatewayID"`
-	TunnelName     string    `json:"tunnelName"`
-	RemoteEndpoint string    `json:"remoteEndpoint,omitempty"`
-	RemoteSubnets  []string  `json:"remoteSubnets,omitempty"`
-	TunnelID       string    `json:"tunnelID,omitempty"`
-	Type_          string    `json:"type,omitempty"`
-	CreatedAt      time.Time `json:"createdAt,omitempty"`
-	UpdatedAt      time.Time `json:"updatedAt,omitempty"`
+	GatewayID          string    `json:"gatewayID"`
+	TunnelName         string    `json:"tunnelName"`
+	RemoteEndpoint     string    `json:"remoteEndpoint,omitempty"`
+	RemoteSubnets      []string  `json:"remoteSubnets,omitempty"`
+	RequestConfigToken string    `json:",omitempty"`
+	Vault              string    `json:",omitempty"`
+	TunnelID           string    `json:"tunnelID,omitempty"`
+	Type_              string    `json:"type,omitempty"`
+	CreatedAt          time.Time `json:"createdAt,omitempty"`
+	UpdatedAt          time.Time `json:"updatedAt,omitempty"`
 }

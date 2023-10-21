@@ -51,6 +51,8 @@ type APIClient struct {
 
 	NetworksApi *NetworksApiService
 
+	ObjectsServicesApi *ObjectsServicesApiService
+
 	OpenVPNApi *OpenVPNApiService
 
 	RegionsApi *RegionsApiService
@@ -79,6 +81,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.IPSecRedundantApi = (*IPSecRedundantApiService)(&c.common)
 	c.IPSecSingleApi = (*IPSecSingleApiService)(&c.common)
 	c.NetworksApi = (*NetworksApiService)(&c.common)
+	c.ObjectsServicesApi = (*ObjectsServicesApiService)(&c.common)
 	c.OpenVPNApi = (*OpenVPNApiService)(&c.common)
 	c.RegionsApi = (*RegionsApiService)(&c.common)
 	c.WireguardApi = (*WireguardApiService)(&c.common)

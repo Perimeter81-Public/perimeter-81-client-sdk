@@ -19,4 +19,6 @@ type CreateRegionInNetworkload struct {
 	Name string `json:",omitempty"`
 	// Region dns.
 	Dns string `json:",omitempty"`
+	// Default gateway ip.
+	DefaultGatewayIp string `json:",omitempty"`
 }

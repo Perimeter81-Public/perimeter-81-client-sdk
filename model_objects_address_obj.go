@@ -10,7 +10,6 @@ package perimeter81sdk
 
 type ObjectsAddressObj struct {
 	ValueType   string   `json:"valueType"`
-	IpVersion   string   `json:"ipVersion"`
 	Value       []string `json:"value"`
 	Name        string   `json:"name"`
 	Description string   `json:"description"`

@@ -12,4 +12,5 @@ type ObjectsAddressesResponse struct {
 	Page float64 `json:"page"`
 	TotalPage float64 `json:"totalPage"`
 	ItemsTotal float64 `json:"itemsTotal"`
+	Data       []ObjectsAddressObj `json:"data"`
 }

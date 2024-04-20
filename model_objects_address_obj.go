@@ -14,4 +14,5 @@ type ObjectsAddressObj struct {
 	Value       []string `json:"value"`
 	Name        string   `json:"name"`
 	Description string   `json:"description"`
+	Id          string   `json:"id"`
 }

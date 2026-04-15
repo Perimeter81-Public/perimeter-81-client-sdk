@@ -22,6 +22,8 @@ type NetworkTunnel struct {
 	NetworkTunnelIpsecSingle *NetworkTunnelIpsecSingle
 	NetworkTunnelOpenvpn *NetworkTunnelOpenvpn
 	NetworkTunnelWireguard *NetworkTunnelWireguard
+	// Fallback for tunnel types not covered by the anyOf variants (e.g. "connector").
+	NetworkTunnelBase *NetworkTunnelBase
 }
 
 // Unmarshal JSON data into any of the pointers in the struct
@@ -79,6 +81,33 @@ func (dst *NetworkTunnel) UnmarshalJSON(data []byte) error {
 		dst.NetworkTunnelWireguard = nil
 	}
 
+	// None of the specific tunnel types matched — fall back to the base tunnel type
+	// which captures common fields (id, network, region, instance, type, etc.).
+	// Use a plain struct (not the generated one) to avoid DisallowUnknownFields rejection.
+	var raw struct {
+		Id            string `json:"id"`
+		Network       string `json:"network"`
+		Region        string `json:"region"`
+		Instance      string `json:"instance"`
+		InterfaceName string `json:"interfaceName"`
+		Type          string `json:"type"`
+		IsHA          bool   `json:"isHA"`
+		TenantId      string `json:"tenantId"`
+	}
+	if err = json.Unmarshal(data, &raw); err == nil && raw.Id != "" {
+		dst.NetworkTunnelBase = &NetworkTunnelBase{
+			Id:            raw.Id,
+			Network:       raw.Network,
+			Region:        raw.Region,
+			Instance:      raw.Instance,
+			InterfaceName: raw.InterfaceName,
+			Type:          raw.Type,
+			IsHA:          raw.IsHA,
+			TenantId:      raw.TenantId,
+		}
+		return nil
+	}
+
 	return fmt.Errorf("data failed to match schemas in anyOf(NetworkTunnel)")
 }
 
@@ -98,6 +127,10 @@ func (src NetworkTunnel) MarshalJSON() ([]byte, error) {
 
 	if src.NetworkTunnelWireguard != nil {
 		return json.Marshal(&src.NetworkTunnelWireguard)
+	}
+
+	if src.NetworkTunnelBase != nil {
+		return json.Marshal(&src.NetworkTunnelBase)
 	}
 
 	return nil, nil // no data in anyOf schemas

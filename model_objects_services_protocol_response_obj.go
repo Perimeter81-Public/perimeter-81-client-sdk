@@ -51,6 +51,48 @@ func (dst *ObjectsServicesProtocolResponseObj) UnmarshalJSON(data []byte) error 
 		dst.ObjectServiceProtocolTCPUDP = nil
 	}
 
+	// None of the specific protocol types matched — fall back to TCPUDP with lenient parsing.
+	// The real API includes a "protocol" field on all protocol objects, which causes strict
+	// decoding to fail on ObjectServiceProtocolSingle/Range/List (they don't have that field).
+	var raw struct {
+		Protocol  string  `json:"protocol"`
+		ValueType string  `json:"valueType"`
+		Value     []int32 `json:"value"`
+	}
+	if err = json.Unmarshal(data, &raw); err == nil && raw.ValueType != "" {
+		switch raw.ValueType {
+		case "single":
+			dst.ObjectServiceProtocolTCPUDP = &ObjectServiceProtocolTCPUDP{
+				ObjectServiceProtocolSingle: &ObjectServiceProtocolSingle{
+					ValueType: raw.ValueType,
+					Value:     raw.Value,
+				},
+			}
+		case "range":
+			dst.ObjectServiceProtocolTCPUDP = &ObjectServiceProtocolTCPUDP{
+				ObjectServiceProtocolRange: &ObjectServiceProtocolRange{
+					ValueType: raw.ValueType,
+					Value:     raw.Value,
+				},
+			}
+		case "list":
+			dst.ObjectServiceProtocolTCPUDP = &ObjectServiceProtocolTCPUDP{
+				ObjectServiceProtocolList: &ObjectServiceProtocolList{
+					ValueType: raw.ValueType,
+					Value:     raw.Value,
+				},
+			}
+		default:
+			dst.ObjectServiceProtocolTCPUDP = &ObjectServiceProtocolTCPUDP{
+				ObjectServiceProtocolSingle: &ObjectServiceProtocolSingle{
+					ValueType: raw.ValueType,
+					Value:     raw.Value,
+				},
+			}
+		}
+		return nil
+	}
+
 	return fmt.Errorf("data failed to match schemas in anyOf(ObjectsServicesProtocolResponseObj)")
 }
 

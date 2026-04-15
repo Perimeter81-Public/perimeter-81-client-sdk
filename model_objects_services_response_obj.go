@@ -21,6 +21,8 @@ var _ MappedNullable = &ObjectsServicesResponseObj{}
 
 // ObjectsServicesResponseObj struct for ObjectsServicesResponseObj
 type ObjectsServicesResponseObj struct {
+	// Unique identifier of the service object.
+	Id *string `json:"id,omitempty"`
 	// The name of the Objects
 	Name string `json:"name" validate:"regexp=^[a-zA-Z0-9_ ]+$"`
 	Description *string `json:"description,omitempty"`

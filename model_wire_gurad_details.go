@@ -135,7 +135,6 @@ func (o *WireGuradDetails) UnmarshalJSON(data []byte) (err error) {
 	varWireGuradDetails := _WireGuradDetails{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWireGuradDetails)
 
 	if err != nil {

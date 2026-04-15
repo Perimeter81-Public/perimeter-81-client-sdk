@@ -289,7 +289,6 @@ func (o *NetworkHaTunnelID) UnmarshalJSON(data []byte) (err error) {
 	varNetworkHaTunnelID := _NetworkHaTunnelID{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkHaTunnelID)
 
 	if err != nil {

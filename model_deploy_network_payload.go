@@ -136,7 +136,6 @@ func (o *DeployNetworkPayload) UnmarshalJSON(data []byte) (err error) {
 	varDeployNetworkPayload := _DeployNetworkPayload{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDeployNetworkPayload)
 
 	if err != nil {

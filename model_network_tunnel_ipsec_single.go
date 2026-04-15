@@ -741,7 +741,6 @@ func (o *NetworkTunnelIpsecSingle) UnmarshalJSON(data []byte) (err error) {
 	varNetworkTunnelIpsecSingle := _NetworkTunnelIpsecSingle{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkTunnelIpsecSingle)
 
 	if err != nil {

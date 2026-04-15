@@ -365,7 +365,6 @@ func (o *WireguardTunnel) UnmarshalJSON(data []byte) (err error) {
 	varWireguardTunnel := _WireguardTunnel{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWireguardTunnel)
 
 	if err != nil {

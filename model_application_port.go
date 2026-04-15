@@ -135,7 +135,6 @@ func (o *ApplicationPort) UnmarshalJSON(data []byte) (err error) {
 	varApplicationPort := _ApplicationPort{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varApplicationPort)
 
 	if err != nil {

@@ -135,7 +135,6 @@ func (o *ApplicationHost) UnmarshalJSON(data []byte) (err error) {
 	varApplicationHost := _ApplicationHost{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varApplicationHost)
 
 	if err != nil {

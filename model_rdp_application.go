@@ -657,7 +657,6 @@ func (o *RdpApplication) UnmarshalJSON(data []byte) (err error) {
 	varRdpApplication := _RdpApplication{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRdpApplication)
 
 	if err != nil {

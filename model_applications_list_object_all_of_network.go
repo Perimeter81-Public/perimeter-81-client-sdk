@@ -137,7 +137,6 @@ func (o *ApplicationsListObjectAllOfNetwork) UnmarshalJSON(data []byte) (err err
 	varApplicationsListObjectAllOfNetwork := _ApplicationsListObjectAllOfNetwork{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varApplicationsListObjectAllOfNetwork)
 
 	if err != nil {

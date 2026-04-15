@@ -108,7 +108,6 @@ func (o *RouteTableUpdate) UnmarshalJSON(data []byte) (err error) {
 	varRouteTableUpdate := _RouteTableUpdate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRouteTableUpdate)
 
 	if err != nil {

@@ -137,7 +137,6 @@ func (o *FixedPort) UnmarshalJSON(data []byte) (err error) {
 	varFixedPort := _FixedPort{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFixedPort)
 
 	if err != nil {

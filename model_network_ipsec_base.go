@@ -444,7 +444,6 @@ func (o *NetworkIpsecBase) UnmarshalJSON(data []byte) (err error) {
 	varNetworkIpsecBase := _NetworkIpsecBase{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkIpsecBase)
 
 	if err != nil {

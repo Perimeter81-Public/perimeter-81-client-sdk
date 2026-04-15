@@ -236,7 +236,6 @@ func (o *PostObjectsAddresses201Response) UnmarshalJSON(data []byte) (err error)
 	varPostObjectsAddresses201Response := _PostObjectsAddresses201Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPostObjectsAddresses201Response)
 
 	if err != nil {

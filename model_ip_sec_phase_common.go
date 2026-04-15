@@ -108,7 +108,6 @@ func (o *IPSecPhaseCommon) UnmarshalJSON(data []byte) (err error) {
 	varIPSecPhaseCommon := _IPSecPhaseCommon{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIPSecPhaseCommon)
 
 	if err != nil {

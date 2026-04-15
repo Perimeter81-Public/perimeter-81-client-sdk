@@ -320,7 +320,6 @@ func (o *NetworkRegion) UnmarshalJSON(data []byte) (err error) {
 	varNetworkRegion := _NetworkRegion{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkRegion)
 
 	if err != nil {

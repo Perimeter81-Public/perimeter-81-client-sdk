@@ -107,7 +107,6 @@ func (o *NetworkFeaturesDNSServices) UnmarshalJSON(data []byte) (err error) {
 	varNetworkFeaturesDNSServices := _NetworkFeaturesDNSServices{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkFeaturesDNSServices)
 
 	if err != nil {

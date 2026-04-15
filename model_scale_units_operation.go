@@ -178,7 +178,6 @@ func (o *ScaleUnitsOperation) UnmarshalJSON(data []byte) (err error) {
 	varScaleUnitsOperation := _ScaleUnitsOperation{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varScaleUnitsOperation)
 
 	if err != nil {

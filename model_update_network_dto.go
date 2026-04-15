@@ -107,7 +107,6 @@ func (o *UpdateNetworkDto) UnmarshalJSON(data []byte) (err error) {
 	varUpdateNetworkDto := _UpdateNetworkDto{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varUpdateNetworkDto)
 
 	if err != nil {

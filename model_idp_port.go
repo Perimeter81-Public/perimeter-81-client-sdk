@@ -137,7 +137,6 @@ func (o *IdpPort) UnmarshalJSON(data []byte) (err error) {
 	varIdpPort := _IdpPort{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIdpPort)
 
 	if err != nil {

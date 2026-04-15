@@ -145,7 +145,6 @@ func (o *EnhancedRegionAttributesEdge) UnmarshalJSON(data []byte) (err error) {
 	varEnhancedRegionAttributesEdge := _EnhancedRegionAttributesEdge{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedRegionAttributesEdge)
 
 	if err != nil {

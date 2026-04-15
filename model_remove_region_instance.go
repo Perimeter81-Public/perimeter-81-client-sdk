@@ -108,7 +108,6 @@ func (o *RemoveRegionInstance) UnmarshalJSON(data []byte) (err error) {
 	varRemoveRegionInstance := _RemoveRegionInstance{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRemoveRegionInstance)
 
 	if err != nil {

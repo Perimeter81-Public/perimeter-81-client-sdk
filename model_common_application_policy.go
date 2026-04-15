@@ -137,7 +137,6 @@ func (o *CommonApplicationPolicy) UnmarshalJSON(data []byte) (err error) {
 	varCommonApplicationPolicy := _CommonApplicationPolicy{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCommonApplicationPolicy)
 
 	if err != nil {

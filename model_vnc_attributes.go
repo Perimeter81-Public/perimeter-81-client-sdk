@@ -143,7 +143,6 @@ func (o *VncAttributes) UnmarshalJSON(data []byte) (err error) {
 	varVncAttributes := _VncAttributes{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varVncAttributes)
 
 	if err != nil {

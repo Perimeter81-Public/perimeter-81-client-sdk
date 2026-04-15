@@ -208,7 +208,6 @@ func (o *PostObjectsServices201Response) UnmarshalJSON(data []byte) (err error) 
 	varPostObjectsServices201Response := _PostObjectsServices201Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varPostObjectsServices201Response)
 
 	if err != nil {

@@ -139,7 +139,6 @@ func (o *CreateInstancesInNetworkPayload) UnmarshalJSON(data []byte) (err error)
 	varCreateInstancesInNetworkPayload := _CreateInstancesInNetworkPayload{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCreateInstancesInNetworkPayload)
 
 	if err != nil {

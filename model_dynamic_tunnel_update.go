@@ -365,7 +365,6 @@ func (o *DynamicTunnelUpdate) UnmarshalJSON(data []byte) (err error) {
 	varDynamicTunnelUpdate := _DynamicTunnelUpdate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varDynamicTunnelUpdate)
 
 	if err != nil {

@@ -552,7 +552,6 @@ func (o *IPSecSingleDetails) UnmarshalJSON(data []byte) (err error) {
 	varIPSecSingleDetails := _IPSecSingleDetails{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIPSecSingleDetails)
 
 	if err != nil {

@@ -623,7 +623,6 @@ func (o *CreateIPSecSinglePayload) UnmarshalJSON(data []byte) (err error) {
 	varCreateIPSecSinglePayload := _CreateIPSecSinglePayload{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCreateIPSecSinglePayload)
 
 	if err != nil {

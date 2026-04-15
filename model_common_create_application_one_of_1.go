@@ -107,7 +107,6 @@ func (o *CommonCreateApplicationOneOf1) UnmarshalJSON(data []byte) (err error) {
 	varCommonCreateApplicationOneOf1 := _CommonCreateApplicationOneOf1{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCommonCreateApplicationOneOf1)
 
 	if err != nil {

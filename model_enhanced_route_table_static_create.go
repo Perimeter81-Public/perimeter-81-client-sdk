@@ -137,7 +137,6 @@ func (o *EnhancedRouteTableStaticCreate) UnmarshalJSON(data []byte) (err error) 
 	varEnhancedRouteTableStaticCreate := _EnhancedRouteTableStaticCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedRouteTableStaticCreate)
 
 	if err != nil {

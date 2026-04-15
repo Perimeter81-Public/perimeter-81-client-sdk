@@ -135,7 +135,6 @@ func (o *ObjectsAddressIP) UnmarshalJSON(data []byte) (err error) {
 	varObjectsAddressIP := _ObjectsAddressIP{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObjectsAddressIP)
 
 	if err != nil {

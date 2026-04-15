@@ -108,7 +108,6 @@ func (o *EnhancedRegionAttributesRunningMode) UnmarshalJSON(data []byte) (err er
 	varEnhancedRegionAttributesRunningMode := _EnhancedRegionAttributesRunningMode{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedRegionAttributesRunningMode)
 
 	if err != nil {

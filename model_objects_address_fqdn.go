@@ -135,7 +135,6 @@ func (o *ObjectsAddressFQDN) UnmarshalJSON(data []byte) (err error) {
 	varObjectsAddressFQDN := _ObjectsAddressFQDN{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObjectsAddressFQDN)
 
 	if err != nil {

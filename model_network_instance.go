@@ -431,7 +431,6 @@ func (o *NetworkInstance) UnmarshalJSON(data []byte) (err error) {
 	varNetworkInstance := _NetworkInstance{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkInstance)
 
 	if err != nil {

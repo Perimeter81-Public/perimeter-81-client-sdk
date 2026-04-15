@@ -351,7 +351,8 @@ type MappedNullable interface {
 // A wrapper for strict JSON decoding
 func newStrictDecoder(data []byte) *json.Decoder {
 	dec := json.NewDecoder(bytes.NewBuffer(data))
-	dec.DisallowUnknownFields()
+	// DisallowUnknownFields removed: the Harmony SASE API returns fields
+	// not present in the OpenAPI spec (e.g. controlledBy, protocol on sub-objects).
 	return dec
 }
 

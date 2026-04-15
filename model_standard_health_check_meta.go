@@ -174,7 +174,6 @@ func (o *StandardHealthCheckMeta) UnmarshalJSON(data []byte) (err error) {
 	varStandardHealthCheckMeta := _StandardHealthCheckMeta{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varStandardHealthCheckMeta)
 
 	if err != nil {

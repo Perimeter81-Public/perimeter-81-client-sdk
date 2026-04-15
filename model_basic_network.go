@@ -442,7 +442,6 @@ func (o *BasicNetwork) UnmarshalJSON(data []byte) (err error) {
 	varBasicNetwork := _BasicNetwork{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBasicNetwork)
 
 	if err != nil {

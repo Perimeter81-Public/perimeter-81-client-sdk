@@ -108,7 +108,6 @@ func (o *StandardHealthResponse) UnmarshalJSON(data []byte) (err error) {
 	varStandardHealthResponse := _StandardHealthResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varStandardHealthResponse)
 
 	if err != nil {

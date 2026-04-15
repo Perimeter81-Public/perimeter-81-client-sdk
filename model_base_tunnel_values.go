@@ -166,7 +166,6 @@ func (o *BaseTunnelValues) UnmarshalJSON(data []byte) (err error) {
 	varBaseTunnelValues := _BaseTunnelValues{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBaseTunnelValues)
 
 	if err != nil {

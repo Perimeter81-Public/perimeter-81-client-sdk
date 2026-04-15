@@ -657,7 +657,6 @@ func (o *SshApplication) UnmarshalJSON(data []byte) (err error) {
 	varSshApplication := _SshApplication{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSshApplication)
 
 	if err != nil {

@@ -135,7 +135,6 @@ func (o *ObjectServiceProtocolSingle) UnmarshalJSON(data []byte) (err error) {
 	varObjectServiceProtocolSingle := _ObjectServiceProtocolSingle{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObjectServiceProtocolSingle)
 
 	if err != nil {

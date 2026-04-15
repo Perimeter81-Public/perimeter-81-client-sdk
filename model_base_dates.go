@@ -146,7 +146,6 @@ func (o *BaseDates) UnmarshalJSON(data []byte) (err error) {
 	varBaseDates := _BaseDates{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBaseDates)
 
 	if err != nil {

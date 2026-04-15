@@ -382,7 +382,6 @@ func (o *OpenVPNTunnel) UnmarshalJSON(data []byte) (err error) {
 	varOpenVPNTunnel := _OpenVPNTunnel{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varOpenVPNTunnel)
 
 	if err != nil {

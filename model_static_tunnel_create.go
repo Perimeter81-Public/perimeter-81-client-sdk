@@ -733,7 +733,6 @@ func (o *StaticTunnelCreate) UnmarshalJSON(data []byte) (err error) {
 	varStaticTunnelCreate := _StaticTunnelCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varStaticTunnelCreate)
 
 	if err != nil {

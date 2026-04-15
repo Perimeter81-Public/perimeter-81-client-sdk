@@ -657,7 +657,6 @@ func (o *VncApplication) UnmarshalJSON(data []byte) (err error) {
 	varVncApplication := _VncApplication{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varVncApplication)
 
 	if err != nil {

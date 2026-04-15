@@ -179,7 +179,6 @@ func (o *ApplicationAlias) UnmarshalJSON(data []byte) (err error) {
 	varApplicationAlias := _ApplicationAlias{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varApplicationAlias)
 
 	if err != nil {

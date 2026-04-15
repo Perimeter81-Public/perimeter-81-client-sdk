@@ -621,7 +621,6 @@ func (o *BasicApplication) UnmarshalJSON(data []byte) (err error) {
 	varBasicApplication := _BasicApplication{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varBasicApplication)
 
 	if err != nil {

@@ -135,7 +135,6 @@ func (o *ObjectServiceProtocolICMPResponse) UnmarshalJSON(data []byte) (err erro
 	varObjectServiceProtocolICMPResponse := _ObjectServiceProtocolICMPResponse{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObjectServiceProtocolICMPResponse)
 
 	if err != nil {

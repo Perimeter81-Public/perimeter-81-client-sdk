@@ -109,7 +109,6 @@ func (o *NetworkFeaturesCloudSecurity) UnmarshalJSON(data []byte) (err error) {
 	varNetworkFeaturesCloudSecurity := _NetworkFeaturesCloudSecurity{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkFeaturesCloudSecurity)
 
 	if err != nil {

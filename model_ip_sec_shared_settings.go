@@ -248,7 +248,6 @@ func (o *IPSecSharedSettings) UnmarshalJSON(data []byte) (err error) {
 	varIPSecSharedSettings := _IPSecSharedSettings{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIPSecSharedSettings)
 
 	if err != nil {

@@ -260,7 +260,6 @@ func (o *HarmonySaseRegion) UnmarshalJSON(data []byte) (err error) {
 	varHarmonySaseRegion := _HarmonySaseRegion{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varHarmonySaseRegion)
 
 	if err != nil {

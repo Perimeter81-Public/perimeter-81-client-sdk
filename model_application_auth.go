@@ -215,7 +215,6 @@ func (o *ApplicationAuth) UnmarshalJSON(data []byte) (err error) {
 	varApplicationAuth := _ApplicationAuth{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varApplicationAuth)
 
 	if err != nil {

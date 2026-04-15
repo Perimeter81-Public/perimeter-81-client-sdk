@@ -109,7 +109,6 @@ func (o *NetworkFeaturesDNSServicesRedirectToResolver) UnmarshalJSON(data []byte
 	varNetworkFeaturesDNSServicesRedirectToResolver := _NetworkFeaturesDNSServicesRedirectToResolver{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkFeaturesDNSServicesRedirectToResolver)
 
 	if err != nil {

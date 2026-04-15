@@ -135,7 +135,6 @@ func (o *ObjectsAddressCIDR) UnmarshalJSON(data []byte) (err error) {
 	varObjectsAddressCIDR := _ObjectsAddressCIDR{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObjectsAddressCIDR)
 
 	if err != nil {

@@ -376,7 +376,6 @@ func (o *NetworkTunnelBase) UnmarshalJSON(data []byte) (err error) {
 	varNetworkTunnelBase := _NetworkTunnelBase{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkTunnelBase)
 
 	if err != nil {

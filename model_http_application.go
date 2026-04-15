@@ -694,7 +694,6 @@ func (o *HttpApplication) UnmarshalJSON(data []byte) (err error) {
 	varHttpApplication := _HttpApplication{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varHttpApplication)
 
 	if err != nil {

@@ -107,7 +107,6 @@ func (o *SshAttributes) UnmarshalJSON(data []byte) (err error) {
 	varSshAttributes := _SshAttributes{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varSshAttributes)
 
 	if err != nil {

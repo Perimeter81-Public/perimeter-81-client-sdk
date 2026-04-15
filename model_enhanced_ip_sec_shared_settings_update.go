@@ -248,7 +248,6 @@ func (o *EnhancedIPSecSharedSettingsUpdate) UnmarshalJSON(data []byte) (err erro
 	varEnhancedIPSecSharedSettingsUpdate := _EnhancedIPSecSharedSettingsUpdate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedIPSecSharedSettingsUpdate)
 
 	if err != nil {

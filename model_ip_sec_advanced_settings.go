@@ -275,7 +275,6 @@ func (o *IPSecAdvancedSettings) UnmarshalJSON(data []byte) (err error) {
 	varIPSecAdvancedSettings := _IPSecAdvancedSettings{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIPSecAdvancedSettings)
 
 	if err != nil {

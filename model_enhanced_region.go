@@ -343,7 +343,6 @@ func (o *EnhancedRegion) UnmarshalJSON(data []byte) (err error) {
 	varEnhancedRegion := _EnhancedRegion{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedRegion)
 
 	if err != nil {

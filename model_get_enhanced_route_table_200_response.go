@@ -191,7 +191,6 @@ func (o *GetEnhancedRouteTable200Response) UnmarshalJSON(data []byte) (err error
 	varGetEnhancedRouteTable200Response := _GetEnhancedRouteTable200Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varGetEnhancedRouteTable200Response)
 
 	if err != nil {

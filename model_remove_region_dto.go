@@ -107,7 +107,6 @@ func (o *RemoveRegionDTO) UnmarshalJSON(data []byte) (err error) {
 	varRemoveRegionDTO := _RemoveRegionDTO{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varRemoveRegionDTO)
 
 	if err != nil {

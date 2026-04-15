@@ -339,7 +339,6 @@ func (o *HttpsCreateApplication) UnmarshalJSON(data []byte) (err error) {
 	varHttpsCreateApplication := _HttpsCreateApplication{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varHttpsCreateApplication)
 
 	if err != nil {

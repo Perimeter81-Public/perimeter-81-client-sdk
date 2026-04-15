@@ -658,7 +658,6 @@ func (o *WebApplication) UnmarshalJSON(data []byte) (err error) {
 	varWebApplication := _WebApplication{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varWebApplication)
 
 	if err != nil {

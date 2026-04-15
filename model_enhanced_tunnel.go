@@ -788,7 +788,6 @@ func (o *EnhancedTunnel) UnmarshalJSON(data []byte) (err error) {
 	varEnhancedTunnel := _EnhancedTunnel{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedTunnel)
 
 	if err != nil {

@@ -180,7 +180,6 @@ func (o *CreateRegionInNetworkPayload) UnmarshalJSON(data []byte) (err error) {
 	varCreateRegionInNetworkPayload := _CreateRegionInNetworkPayload{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varCreateRegionInNetworkPayload)
 
 	if err != nil {

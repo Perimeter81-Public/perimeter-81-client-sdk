@@ -191,7 +191,6 @@ func (o *GetEnhancedRegionTunnelsPerNetwork200Response) UnmarshalJSON(data []byt
 	varGetEnhancedRegionTunnelsPerNetwork200Response := _GetEnhancedRegionTunnelsPerNetwork200Response{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varGetEnhancedRegionTunnelsPerNetwork200Response)
 
 	if err != nil {

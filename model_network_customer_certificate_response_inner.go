@@ -167,7 +167,6 @@ func (o *NetworkCustomerCertificateResponseInner) UnmarshalJSON(data []byte) (er
 	varNetworkCustomerCertificateResponseInner := _NetworkCustomerCertificateResponseInner{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkCustomerCertificateResponseInner)
 
 	if err != nil {

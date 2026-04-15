@@ -172,7 +172,6 @@ func (o *ObjectsServicesRequestObj) UnmarshalJSON(data []byte) (err error) {
 	varObjectsServicesRequestObj := _ObjectsServicesRequestObj{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varObjectsServicesRequestObj)
 
 	if err != nil {

@@ -363,7 +363,6 @@ func (o *IPSecRedundantTunnels) UnmarshalJSON(data []byte) (err error) {
 	varIPSecRedundantTunnels := _IPSecRedundantTunnels{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varIPSecRedundantTunnels)
 
 	if err != nil {

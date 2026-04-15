@@ -136,7 +136,6 @@ func (o *FixedHost) UnmarshalJSON(data []byte) (err error) {
 	varFixedHost := _FixedHost{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varFixedHost)
 
 	if err != nil {

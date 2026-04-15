@@ -478,7 +478,6 @@ func (o *EnhancedNetwork) UnmarshalJSON(data []byte) (err error) {
 	varEnhancedNetwork := _EnhancedNetwork{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedNetwork)
 
 	if err != nil {

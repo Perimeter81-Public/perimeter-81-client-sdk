@@ -190,7 +190,6 @@ func (o *EnhancedRegionCreate) UnmarshalJSON(data []byte) (err error) {
 	varEnhancedRegionCreate := _EnhancedRegionCreate{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varEnhancedRegionCreate)
 
 	if err != nil {

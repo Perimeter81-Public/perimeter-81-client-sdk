@@ -433,7 +433,6 @@ func (o *NetworkTunnelOpenvpn) UnmarshalJSON(data []byte) (err error) {
 	varNetworkTunnelOpenvpn := _NetworkTunnelOpenvpn{}
 
 	decoder := json.NewDecoder(bytes.NewReader(data))
-	decoder.DisallowUnknownFields()
 	err = decoder.Decode(&varNetworkTunnelOpenvpn)
 
 	if err != nil {

@@ -14,7 +14,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 	"testing"
-	openapiclient "github.com/Perimeter81-Public/perimeter-81-client-sdk"
+	openapiclient "github.com/Perimeter81-Public/perimeter-81-client-sdk/v2"
 )
 
 func Test_perimeter81sdk_EnhancedRouteTablesAPIService(t *testing.T) {

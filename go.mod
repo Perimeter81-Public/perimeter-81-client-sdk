@@ -1,4 +1,4 @@
-module github.com/Perimeter81-Public/perimeter-81-client-sdk
+module github.com/Perimeter81-Public/perimeter-81-client-sdk/v2
 
 go 1.26.2
 

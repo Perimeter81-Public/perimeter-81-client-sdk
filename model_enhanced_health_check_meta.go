@@ -168,14 +168,18 @@ func (o EnhancedHealthCheckMeta) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *EnhancedHealthCheckMeta) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
+	// Hand-edited for P81-123406 (BUG-25). The swagger marks `tunnelId` and
+	// `regionId` as required, but the public-api omits them for tunnels that
+	// haven't completed a health probe yet (status="unknown"). Strict-decoding
+	// against the full list caused every Read of the data source to fail with
+	// `no value given for required property tunnelId` whenever the parent
+	// network had a freshly-attached tunnel.
+	//
+	// Only `networkId` and `tunnelName` are actually always present on the
+	// wire; tunnelId / regionId fall back to "" when omitted.
 	requiredProperties := []string{
 		"networkId",
 		"tunnelName",
-		"tunnelId",
-		"regionId",
 	}
 
 	allProperties := make(map[string]interface{})

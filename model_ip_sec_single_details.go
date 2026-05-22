@@ -31,7 +31,7 @@ type IPSecSingleDetails struct {
 	P81GatewaySubnets []string `json:"p81GatewaySubnets"`
 	RemoteGatewaySubnets []string `json:"remoteGatewaySubnets"`
 	// Expected peak throughput of the tunnel communication in Mbps. Typical connection will be of 1000Mbps.
-	PeakBandwidth *int32 `json:"peakBandwidth,omitempty"`
+	PeakBandwidth *int32 `json:"peakBandwidthMbps,omitempty"`
 	P81ASN *RemoteASN `json:"p81ASN,omitempty"`
 	Features *IPSecSharedSettingsFeatures `json:"features,omitempty"`
 	Passphrase *string `json:"passphrase,omitempty" validate:"regexp=^[a-zA-Z1-9._][a-zA-Z0-9._]{7,63}$"`
@@ -499,7 +499,7 @@ func (o IPSecSingleDetails) ToMap() (map[string]interface{}, error) {
 	toSerialize["p81GatewaySubnets"] = o.P81GatewaySubnets
 	toSerialize["remoteGatewaySubnets"] = o.RemoteGatewaySubnets
 	if !IsNil(o.PeakBandwidth) {
-		toSerialize["peakBandwidth"] = o.PeakBandwidth
+		toSerialize["peakBandwidthMbps"] = o.PeakBandwidth
 	}
 	if !IsNil(o.P81ASN) {
 		toSerialize["p81ASN"] = o.P81ASN

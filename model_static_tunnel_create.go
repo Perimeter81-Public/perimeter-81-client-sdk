@@ -44,7 +44,7 @@ type StaticTunnelCreate struct {
 	// Remote gateway subnets
 	RemoteGatewaySubnets []string `json:"remoteGatewaySubnets"`
 	// Expected peak throughput of the tunnel communication in Mbps. Typical connection will be of 1000Mbps.
-	PeakBandwidth *int32 `json:"peakBandwidth,omitempty"`
+	PeakBandwidth *int32 `json:"peakBandwidthMbps,omitempty"`
 	// IKE version for key exchange
 	KeyExchange string `json:"keyExchange"`
 	IkeLifeTime string `json:"ikeLifeTime" validate:"regexp=^((1[0-9]|[2-9][0-9]|[1-9][0-9]{2,3}|[1-7][0-9]{4}|8[0-5][0-9]{3}|86[0-3][0-9]{2}|86400)s)|(([1-9]|[1-9][0-9]|[1-9][0-9][0-9]|1[0-3][0-9][0-9]|14[0-3][0-9]|1440)m)|(([1-9]|1[0-9]|2[0-4])h)$"`
@@ -686,7 +686,7 @@ func (o StaticTunnelCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize["p81GatewaySubnets"] = o.P81GatewaySubnets
 	toSerialize["remoteGatewaySubnets"] = o.RemoteGatewaySubnets
 	if !IsNil(o.PeakBandwidth) {
-		toSerialize["peakBandwidth"] = o.PeakBandwidth
+		toSerialize["peakBandwidthMbps"] = o.PeakBandwidth
 	}
 	toSerialize["keyExchange"] = o.KeyExchange
 	toSerialize["ikeLifeTime"] = o.IkeLifeTime

@@ -52,7 +52,7 @@ type EnhancedTunnel struct {
 	Features NetworkFeatures `json:"features"`
 	RoutingType *RoutingType `json:"routingType,omitempty"`
 	// Expected peak throughput of the tunnel communication in Mbps. Typical connection will be of 1000Mbps.
-	PeakBandwidth *int32 `json:"peakBandwidth,omitempty"`
+	PeakBandwidth *int32 `json:"peakBandwidthMbps,omitempty"`
 	// Enhanced tunnel ID
 	Id string `json:"id"`
 	// Enhanced dynamic tunnel group ID (or tunnel ID for static tunnel)
@@ -738,7 +738,7 @@ func (o EnhancedTunnel) ToMap() (map[string]interface{}, error) {
 		toSerialize["routingType"] = o.RoutingType
 	}
 	if !IsNil(o.PeakBandwidth) {
-		toSerialize["peakBandwidth"] = o.PeakBandwidth
+		toSerialize["peakBandwidthMbps"] = o.PeakBandwidth
 	}
 	toSerialize["id"] = o.Id
 	toSerialize["haTunnelID"] = o.HaTunnelID

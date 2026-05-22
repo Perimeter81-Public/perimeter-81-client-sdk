@@ -34,7 +34,7 @@ type StaticTunnelUpdate struct {
 	Features *NetworkFeaturesCreate `json:"features,omitempty"`
 	RoutingType *RoutingType `json:"routingType,omitempty"`
 	// Expected peak throughput of the tunnel communication in Mbps. Typical connection will be of 1000Mbps.
-	PeakBandwidth *int32 `json:"peakBandwidth,omitempty"`
+	PeakBandwidth *int32 `json:"peakBandwidthMbps,omitempty"`
 	// Name of the static tunnel
 	TunnelName *string `json:"tunnelName,omitempty"`
 	// Harmony Sase gateway subnets
@@ -719,7 +719,7 @@ func (o StaticTunnelUpdate) ToMap() (map[string]interface{}, error) {
 		toSerialize["routingType"] = o.RoutingType
 	}
 	if !IsNil(o.PeakBandwidth) {
-		toSerialize["peakBandwidth"] = o.PeakBandwidth
+		toSerialize["peakBandwidthMbps"] = o.PeakBandwidth
 	}
 	if !IsNil(o.TunnelName) {
 		toSerialize["tunnelName"] = o.TunnelName

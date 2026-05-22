@@ -52,7 +52,7 @@ type EnhancedTunnelBase struct {
 	Features NetworkFeatures `json:"features"`
 	RoutingType *RoutingType `json:"routingType,omitempty"`
 	// Expected peak throughput of the tunnel communication in Mbps. Typical connection will be of 1000Mbps.
-	PeakBandwidth *int32 `json:"peakBandwidth,omitempty"`
+	PeakBandwidth *int32 `json:"peakBandwidthMbps,omitempty"`
 }
 
 type _EnhancedTunnelBase EnhancedTunnelBase
@@ -657,7 +657,7 @@ func (o EnhancedTunnelBase) ToMap() (map[string]interface{}, error) {
 		toSerialize["routingType"] = o.RoutingType
 	}
 	if !IsNil(o.PeakBandwidth) {
-		toSerialize["peakBandwidth"] = o.PeakBandwidth
+		toSerialize["peakBandwidthMbps"] = o.PeakBandwidth
 	}
 	return toSerialize, nil
 }

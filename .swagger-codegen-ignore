@@ -1,0 +1,89 @@
+# .swagger-codegen-ignore
+#
+# Files listed here will NOT be overwritten by swagger-codegen / openapi-generator
+# when the SDK is regenerated from the swagger spec. Each section below
+# documents WHY the file diverges from the generator's output, so a future
+# maintainer can decide whether the hand-edit is still needed (i.e. whether
+# the upstream swagger has caught up to reality).
+#
+# Re-evaluate every entry whenever the swagger spec is updated.
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-123406 / BUG-17 — Object Service protocols
+# ═══════════════════════════════════════════════════════════════════════
+# The swagger declares ObjectServiceProtocolTCPUDP as a `oneOf` over
+# Single/Range/List, and wraps it again in `anyOf(TCPUDP, ICMPResponse)`
+# for ObjectsServicesProtocolResponseObj/RequestObj. The public-api at
+# perimeter81-public-api/src/api/interceptors/services/services.interceptor.ts
+# actually emits a single flat object per protocol entry:
+#   { protocol, valueType, value }                  for tcp/udp
+#   { protocol, protocolOptions }                   for icmp
+# The codegen's nested wrapper types cannot be populated from the flat
+# wire payload (the inner pointers stay nil after Unmarshal), so we
+# replaced them with plain structs that match the wire shape.
+#
+# If a future swagger update flattens those schemas itself, remove the
+# entries below and let codegen regenerate normally.
+model_objects_services_protocol_response_obj.go
+model_objects_services_protocol_request_obj.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-123406 / BUG-23 — peakBandwidth → peakBandwidthMbps JSON tag
+# ═══════════════════════════════════════════════════════════════════════
+# The public-api DTO at perimeter81-public-api/src/api/entities/networks
+# /enhanced/baseEnhancedIPSecTunnel.dto.ts:75 declares the wire field as
+# `peakBandwidthMbps`. The swagger still says `peakBandwidth`, so the
+# generated `json:"peakBandwidth,omitempty"` tags caused the API to
+# reject every IPSec tunnel mutation with:
+#     property peakBandwidth should not exist
+# We rename the JSON tag (Go field name PeakBandwidth stays so SDK
+# callers don't churn) and update the matching key in the generated
+# ToMap() serializer.
+#
+# If a future swagger update renames the property, drop these entries
+# and let codegen regenerate normally.
+model_create_ip_sec_single_payload.go
+model_enhanced_ip_sec_shared_settings_create.go
+model_enhanced_ip_sec_shared_settings_update.go
+model_enhanced_tunnel.go
+model_enhanced_tunnel_base.go
+model_ip_sec_shared_settings.go
+model_ip_sec_shared_settings_create.go
+model_ip_sec_single_details.go
+model_ip_sec_single_tunnel.go
+model_static_tunnel_create.go
+model_static_tunnel_update.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-123406 / BUG-25 — Sparse enhanced-health meta on wire
+# ═══════════════════════════════════════════════════════════════════════
+# The swagger declares all four EnhancedHealthCheckMeta fields (networkId,
+# tunnelName, tunnelId, regionId) as required, but the public-api only
+# emits networkId + tunnelName for tunnels that haven't completed an
+# initial health probe yet (status="unknown"). The generated
+# UnmarshalJSON strict-checks the full required list and rejects sparse
+# wire payloads with `no value given for required property tunnelId`.
+# We trim the required list to the two always-present fields; tunnelId /
+# regionId fall back to "" when the wire omits them.
+#
+# If a future swagger update marks tunnelId/regionId optional (or wraps
+# them in a nullable type), drop this entry and let codegen regenerate.
+model_enhanced_health_check_meta.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-123406 / BUG-24 — RemoteASN / ASN empty-struct rewrite
+# ═══════════════════════════════════════════════════════════════════════
+# The swagger declares RemoteASN and ASN as standalone schemas with no
+# properties, so the codegen emitted `type RemoteASN struct {}` and
+# `type ASN struct {}`. Both can never carry the integer ASN value they
+# are supposed to represent — the API receives `leftASN: {}` instead of
+# `leftASN: 65010` and rejects with:
+#     leftASN must be a number
+# We redefine each as a named int32 (`type RemoteASN int32`) so Go's
+# default JSON encoding produces a plain integer on the wire. The
+# Nullable* wrappers are kept for backwards compatibility.
+#
+# If a future swagger update gives these schemas a `type: integer`
+# definition, drop these entries and let codegen regenerate normally.
+model_remote_asn.go
+model_asn.go

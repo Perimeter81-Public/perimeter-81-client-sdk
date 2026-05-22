@@ -24,7 +24,7 @@ type IPSecSharedSettingsCreate struct {
 	P81GatewaySubnets []string `json:"p81GatewaySubnets"`
 	RemoteGatewaySubnets []string `json:"remoteGatewaySubnets"`
 	// Expected peak throughput of the tunnel communication in Mbps. Typical connection will be of 1000Mbps.
-	PeakBandwidth *int32 `json:"peakBandwidth,omitempty"`
+	PeakBandwidth *int32 `json:"peakBandwidthMbps,omitempty"`
 	P81ASN RemoteASN `json:"p81ASN"`
 	Features *IPSecSharedSettingsFeatures `json:"features,omitempty"`
 }
@@ -204,7 +204,7 @@ func (o IPSecSharedSettingsCreate) ToMap() (map[string]interface{}, error) {
 	toSerialize["p81GatewaySubnets"] = o.P81GatewaySubnets
 	toSerialize["remoteGatewaySubnets"] = o.RemoteGatewaySubnets
 	if !IsNil(o.PeakBandwidth) {
-		toSerialize["peakBandwidth"] = o.PeakBandwidth
+		toSerialize["peakBandwidthMbps"] = o.PeakBandwidth
 	}
 	toSerialize["p81ASN"] = o.P81ASN
 	if !IsNil(o.Features) {

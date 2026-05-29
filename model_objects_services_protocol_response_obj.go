@@ -6,20 +6,18 @@ The YAML for Harmony SASE Public API.
 API version: 2.3.0
 */
 
-// Hand-edited for P81-123406 (BUG-17). The original openapi-generated code
-// declared this type as a discriminator-less anyOf wrapper around
-// ObjectServiceProtocolICMPResponse + ObjectServiceProtocolTCPUDP (which
-// itself was a oneOf over Single/Range/List). The public-api actually emits
-// a single flat object per protocol entry — { protocol, valueType, value }
-// for tcp/udp and { protocol, protocolOptions } for icmp — so the generated
-// nested types could never round-trip the wire payload. We replace the
-// wrapper with a flat struct that matches the real shape; standard
+// Hand-edited. The openapi-generated code declared this type as a
+// discriminator-less anyOf wrapper around ObjectServiceProtocolICMPResponse
+// + ObjectServiceProtocolTCPUDP (itself a oneOf over Single/Range/List).
+// The public-api actually emits a single flat object per protocol entry —
+// { protocol, valueType, value } for tcp/udp and { protocol, protocolOptions }
+// for icmp — so the generated nested types could never round-trip the wire
+// payload. Replaced with a flat struct that matches the real shape; standard
 // json.Marshal / json.Unmarshal handle it correctly in both directions.
 //
 // The legacy nested types (ObjectServiceProtocolTCPUDP / List / Range /
 // Single / ObjectServiceProtocolICMPResponse) are left in the SDK so any
-// out-of-tree callers keep compiling; they are no longer referenced by the
-// flat type below.
+// out-of-tree callers keep compiling; they are no longer referenced.
 //
 // Added to .swagger-codegen-ignore so a future regen does not clobber this.
 

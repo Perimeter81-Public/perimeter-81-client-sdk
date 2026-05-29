@@ -87,3 +87,23 @@ model_enhanced_health_check_meta.go
 # definition, drop these entries and let codegen regenerate normally.
 model_remote_asn.go
 model_asn.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-124405 / BUG-26 — IPSecSharedSettingsCreate.p81ASN required→optional
+# ═══════════════════════════════════════════════════════════════════════
+# The swagger declares `p81ASN` as required on IPSecSharedSettingsCreate,
+# but the public-api DTOs at
+# perimeter81-public-api/src/api/entities/networks/tunnels
+# /createIPSecRedundant.dto.ts mark it `@IsOptional()` on both
+# v2.1 (IPSecRedundantSharedSettings) and v2.2
+# (IPSecRedundantSharedSettingsV2_2). The codegen emitted a non-pointer
+# `P81ASN RemoteASN` with no `omitempty`, so every CREATE serialized
+# `"p81ASN": 0` on the wire, which the @IsValidASN validator rejects
+# (range starts at 1). We switch the field to *RemoteASN with
+# `omitempty`, mirror of the response type IPSecSharedSettings.P81ASN
+# which is already *RemoteASN. Constructor signature and UnmarshalJSON
+# requiredProperties list are updated to match.
+#
+# If a future swagger update marks p81ASN optional itself, drop this
+# entry and let codegen regenerate normally.
+model_ip_sec_shared_settings_create.go

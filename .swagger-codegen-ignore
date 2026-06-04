@@ -87,3 +87,66 @@ model_enhanced_health_check_meta.go
 # definition, drop these entries and let codegen regenerate normally.
 model_remote_asn.go
 model_asn.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-124405 / BUG-26 — IPSecSharedSettingsCreate.p81ASN required→optional
+# ═══════════════════════════════════════════════════════════════════════
+# The swagger declares `p81ASN` as required on IPSecSharedSettingsCreate,
+# but the public-api DTOs at
+# perimeter81-public-api/src/api/entities/networks/tunnels
+# /createIPSecRedundant.dto.ts mark it `@IsOptional()` on both
+# v2.1 (IPSecRedundantSharedSettings) and v2.2
+# (IPSecRedundantSharedSettingsV2_2). The codegen emitted a non-pointer
+# `P81ASN RemoteASN` with no `omitempty`, so every CREATE serialized
+# `"p81ASN": 0` on the wire, which the @IsValidASN validator rejects
+# (range starts at 1). We switch the field to *RemoteASN with
+# `omitempty`, mirror of the response type IPSecSharedSettings.P81ASN
+# which is already *RemoteASN. Constructor signature and UnmarshalJSON
+# requiredProperties list are updated to match.
+#
+# If a future swagger update marks p81ASN optional itself, drop this
+# entry and let codegen regenerate normally.
+model_ip_sec_shared_settings_create.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-124405 — IPSecRedundantTunnel response strict-required
+# ═══════════════════════════════════════════════════════════════════════
+# Same family as BUG-25 sparse-meta fix. The swagger declares passphrase
+# and remoteID as required on IPSecRedundantTunnel, but the public-api
+# GET response omits passphrase (it's a secret — never returned on Read)
+# and may omit remoteID when the user didn't set one explicitly. The
+# codegen UnmarshalJSON strict-checked the full required list and failed
+# every Read with `no value given for required property passphrase`,
+# leaving terraform to discard the resource with `Root resource was
+# present, but now absent`. We trim requiredProperties to the fields the
+# upstream wire always emits: p81GWInternalIP, remoteGWInternalIP,
+# remotePublicIP, remoteASN, gatewayID. Surfaced during BUG-26 live
+# verification on tenant oleksandrc-test1.
+#
+# If a future swagger update marks passphrase/remoteID optional itself,
+# drop this entry and let codegen regenerate normally.
+model_ip_sec_redundant_tunnel.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# P81-124405 — NetworkTunnelIpsecRedundant strict-required trim
+# ═══════════════════════════════════════════════════════════════════════
+# The swagger declared 26 properties as required on
+# NetworkTunnelIpsecRedundant (the list-network/GET-network response
+# variant of a redundant tunnel in the NetworkTunnel anyOf union), but
+# the wire response omits several:
+#   - passphrase (secret — never echoed on GET)
+#   - rightID, leftPrivateIP, rightPrivateIP, dpdAction (upstream-internal,
+#     inconsistently returned)
+#   - keyExchange/ikeLifeTime/lifetime/dpdDelay/dpdTimeout/phase1/phase2
+#     (live only on the dedicated GET redundant tunnel endpoint, not on
+#     the list-network response).
+# Strict required check failed every Unmarshal → NetworkTunnel union
+# fell back to NetworkTunnelBase → NetworkTunnelIpsecRedundant stayed
+# nil → provider's getRedundantTunnelId couldn't extract the HA tunnel
+# ID → Create returned without SetId → terraform reported "Root resource
+# was present, but now absent".
+# Trim to the always-present base fields plus haTunnelID (which is the
+# whole point of this variant).
+#
+# If a future swagger update trims required itself, drop this entry.
+model_network_tunnel_ipsec_redundant.go

@@ -6,7 +6,7 @@ The YAML for Harmony SASE Public API.
 API version: 2.3.0
 */
 
-// Hand-edited for P81-123406 (BUG-17). Same flat-struct rewrite as
+// Hand-edited. Same flat-struct rewrite as
 // model_objects_services_protocol_response_obj.go, but for the request side.
 // The public-api accepts protocols in the same flat shape it emits.
 //

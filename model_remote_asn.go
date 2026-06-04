@@ -6,17 +6,12 @@ The YAML for Harmony SASE Public API.
 API version: 2.3.0
 */
 
-// Hand-edited for P81-123406 (BUG-24). The original openapi-generated code
-// declared `type RemoteASN struct {}` — an empty struct that could never
-// carry the BGP autonomous-system-number value it was supposed to represent.
-// On the wire the API expects (and returns) a plain integer. We redefine
-// RemoteASN as a named int32 so the standard json.Marshal / json.Unmarshal
-// produce / consume the correct numeric body field.
-//
-// SDK callers used to construct empty `RemoteASN{}` literals which the API
-// rejected with `leftASN must be a number`. Callers after this fix should
-// write e.g. `RemoteASN(65010)`; the Nullable wrapper is kept for backwards
-// compatibility.
+// Hand-edited. Openapi-generated code declared `type RemoteASN struct {}` —
+// an empty struct that could never carry the BGP autonomous-system-number
+// value it was supposed to represent. On the wire the API expects (and
+// returns) a plain integer, so RemoteASN is redefined as a named int32.
+// Callers should write e.g. `RemoteASN(65010)`; the Nullable wrapper is
+// kept for backwards compatibility.
 //
 // Added to .swagger-codegen-ignore so a future regen does not clobber this.
 

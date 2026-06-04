@@ -6,10 +6,10 @@ The YAML for Harmony SASE Public API.
 API version: 2.3.0
 */
 
-// Hand-edited for P81-123406 (BUG-24). Twin of model_remote_asn.go — the
-// codegen also produced `type ASN struct {}` (empty struct) for the per-
-// tunnel `remoteASN` field on dynamic tunnels. Redefined as a named int32
-// for the same reason: the wire shape is a plain integer.
+// Hand-edited. Twin of model_remote_asn.go — codegen produced
+// `type ASN struct {}` (empty struct) for the per-tunnel `remoteASN`
+// field on dynamic tunnels. Redefined as a named int32 because the wire
+// shape is a plain integer.
 //
 // Added to .swagger-codegen-ignore so a future regen does not clobber this.
 

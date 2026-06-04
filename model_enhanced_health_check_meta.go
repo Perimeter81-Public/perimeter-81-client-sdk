@@ -168,15 +168,12 @@ func (o EnhancedHealthCheckMeta) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *EnhancedHealthCheckMeta) UnmarshalJSON(data []byte) (err error) {
-	// Hand-edited for P81-123406 (BUG-25). The swagger marks `tunnelId` and
-	// `regionId` as required, but the public-api omits them for tunnels that
-	// haven't completed a health probe yet (status="unknown"). Strict-decoding
-	// against the full list caused every Read of the data source to fail with
+	// Hand-edited. Swagger marks `tunnelId` and `regionId` required, but the
+	// public-api omits them for tunnels with status="unknown" (no probe yet).
+	// Strict-decoding against the full list fails with
 	// `no value given for required property tunnelId` whenever the parent
-	// network had a freshly-attached tunnel.
-	//
-	// Only `networkId` and `tunnelName` are actually always present on the
-	// wire; tunnelId / regionId fall back to "" when omitted.
+	// network has a freshly-attached tunnel. Only `networkId` and `tunnelName`
+	// are actually always present; tunnelId / regionId fall back to "".
 	requiredProperties := []string{
 		"networkId",
 		"tunnelName",

@@ -13,8 +13,18 @@ package perimeter81sdk
 import (
 	"encoding/json"
 	"fmt"
-	"gopkg.in/validator.v2"
 )
+
+// HAND-PATCHED (P81-126016) — the upstream OpenAPI spec for
+// GET /v2.3/applications/{applicationId} declares a oneOf response with no
+// `discriminator: { propertyName: type }`. openapi-generator therefore emits
+// a "try-each, count matches" UnmarshalJSON, but the five *Application
+// schemas share identical required properties and have no `validate:` tags,
+// so every successful response matches all five and the decoder fails with
+// `data matches more than one schema in oneOf(GetApplicationById200Response)`.
+// The generated `UnmarshalJSON` below is replaced with a type-discriminated
+// dispatch until the upstream swagger ships a discriminator. Re-apply this
+// patch after every SDK regen — see LEFTOVERS.md L10.
 
 // GetApplicationById200Response - struct for GetApplicationById200Response
 type GetApplicationById200Response struct {
@@ -61,109 +71,51 @@ func VncApplicationAsGetApplicationById200Response(v *VncApplication) GetApplica
 }
 
 
-// Unmarshal JSON data into one of the pointers in the struct
+// Unmarshal JSON data into the pointer that matches the `type` discriminator.
+// See HAND-PATCHED note near the imports for context (P81-126016 / OPEN-04).
 func (dst *GetApplicationById200Response) UnmarshalJSON(data []byte) error {
-	var err error
-	match := 0
-	// try to unmarshal data into HttpApplication
-	err = newStrictDecoder(data).Decode(&dst.HttpApplication)
-	if err == nil {
-		jsonHttpApplication, _ := json.Marshal(dst.HttpApplication)
-		if string(jsonHttpApplication) == "{}" { // empty struct
-			dst.HttpApplication = nil
-		} else {
-			if err = validator.Validate(dst.HttpApplication); err != nil {
-				dst.HttpApplication = nil
-			} else {
-				match++
-			}
+	var probe struct {
+		Type string `json:"type"`
+	}
+	if err := json.Unmarshal(data, &probe); err != nil {
+		return fmt.Errorf("oneOf(GetApplicationById200Response): cannot read type discriminator: %w", err)
+	}
+
+	switch probe.Type {
+	case "http":
+		var v HttpApplication
+		if err := json.Unmarshal(data, &v); err != nil {
+			return fmt.Errorf("oneOf(GetApplicationById200Response): decode HttpApplication: %w", err)
 		}
-	} else {
-		dst.HttpApplication = nil
-	}
-
-	// try to unmarshal data into HttpsApplication
-	err = newStrictDecoder(data).Decode(&dst.HttpsApplication)
-	if err == nil {
-		jsonHttpsApplication, _ := json.Marshal(dst.HttpsApplication)
-		if string(jsonHttpsApplication) == "{}" { // empty struct
-			dst.HttpsApplication = nil
-		} else {
-			if err = validator.Validate(dst.HttpsApplication); err != nil {
-				dst.HttpsApplication = nil
-			} else {
-				match++
-			}
+		dst.HttpApplication = &v
+	case "https":
+		var v HttpsApplication
+		if err := json.Unmarshal(data, &v); err != nil {
+			return fmt.Errorf("oneOf(GetApplicationById200Response): decode HttpsApplication: %w", err)
 		}
-	} else {
-		dst.HttpsApplication = nil
-	}
-
-	// try to unmarshal data into RdpApplication
-	err = newStrictDecoder(data).Decode(&dst.RdpApplication)
-	if err == nil {
-		jsonRdpApplication, _ := json.Marshal(dst.RdpApplication)
-		if string(jsonRdpApplication) == "{}" { // empty struct
-			dst.RdpApplication = nil
-		} else {
-			if err = validator.Validate(dst.RdpApplication); err != nil {
-				dst.RdpApplication = nil
-			} else {
-				match++
-			}
+		dst.HttpsApplication = &v
+	case "rdp":
+		var v RdpApplication
+		if err := json.Unmarshal(data, &v); err != nil {
+			return fmt.Errorf("oneOf(GetApplicationById200Response): decode RdpApplication: %w", err)
 		}
-	} else {
-		dst.RdpApplication = nil
-	}
-
-	// try to unmarshal data into SshApplication
-	err = newStrictDecoder(data).Decode(&dst.SshApplication)
-	if err == nil {
-		jsonSshApplication, _ := json.Marshal(dst.SshApplication)
-		if string(jsonSshApplication) == "{}" { // empty struct
-			dst.SshApplication = nil
-		} else {
-			if err = validator.Validate(dst.SshApplication); err != nil {
-				dst.SshApplication = nil
-			} else {
-				match++
-			}
+		dst.RdpApplication = &v
+	case "ssh":
+		var v SshApplication
+		if err := json.Unmarshal(data, &v); err != nil {
+			return fmt.Errorf("oneOf(GetApplicationById200Response): decode SshApplication: %w", err)
 		}
-	} else {
-		dst.SshApplication = nil
-	}
-
-	// try to unmarshal data into VncApplication
-	err = newStrictDecoder(data).Decode(&dst.VncApplication)
-	if err == nil {
-		jsonVncApplication, _ := json.Marshal(dst.VncApplication)
-		if string(jsonVncApplication) == "{}" { // empty struct
-			dst.VncApplication = nil
-		} else {
-			if err = validator.Validate(dst.VncApplication); err != nil {
-				dst.VncApplication = nil
-			} else {
-				match++
-			}
+		dst.SshApplication = &v
+	case "vnc":
+		var v VncApplication
+		if err := json.Unmarshal(data, &v); err != nil {
+			return fmt.Errorf("oneOf(GetApplicationById200Response): decode VncApplication: %w", err)
 		}
-	} else {
-		dst.VncApplication = nil
+		dst.VncApplication = &v
+	default:
+		return fmt.Errorf("oneOf(GetApplicationById200Response): unknown application type %q", probe.Type)
 	}
-
-	if match > 1 { // more than 1 match
-		// reset to nil
-		dst.HttpApplication = nil
-		dst.HttpsApplication = nil
-		dst.RdpApplication = nil
-		dst.SshApplication = nil
-		dst.VncApplication = nil
-
-		return fmt.Errorf("data matches more than one schema in oneOf(GetApplicationById200Response)")
-	} else if match == 1 {
-		return nil // exactly one match
-	} else { // no match
-		return fmt.Errorf("data failed to match schemas in oneOf(GetApplicationById200Response)")
-	}
+	return nil
 }
 
 // Marshal data from the first non-nil pointers in the struct to JSON

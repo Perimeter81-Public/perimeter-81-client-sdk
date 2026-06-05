@@ -191,12 +191,16 @@ func (o ApplicationAuth) ToMap() (map[string]interface{}, error) {
 }
 
 func (o *ApplicationAuth) UnmarshalJSON(data []byte) (err error) {
-	// This validates that all required properties are included in the JSON object
-	// by unmarshalling the object into a generic map with string keys and checking
-	// that every required field exists as a key in the generic map.
-	requiredProperties := []string{
-		"authEnabled",
-	}
+	// HAND-PATCHED (P81-126016) — the upstream swagger declares `authEnabled`
+	// as a required property of ApplicationAuth, but on Read responses the
+	// server omits it entirely (sending bare `"auth": {}`). With the generated
+	// strict check in place, decoding any Application Read response fails
+	// with `no value given for required property authEnabled` even after the
+	// outer oneOf is dispatched correctly. The required-property list is
+	// emptied here until the upstream swagger declares the field optional or
+	// the server starts sending it. Re-apply this patch after every SDK
+	// regen — see LEFTOVERS.md L10.
+	requiredProperties := []string{}
 
 	allProperties := make(map[string]interface{})
 

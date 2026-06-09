@@ -65,7 +65,12 @@ func (a *FirewallPolicyAPIService) GetFirewallPolicyExecute(r ApiGetFirewallPoli
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2.3/networks/{networkId}/policy"
+	// Hand-edited (FP-D1): swagger declares legacy `/networks/{id}/policy`
+	// but that endpoint silently discards `trace` writes — confirmed via
+	// live PUT/GET round-trip on tenant oleksandrc-test1. Migrate to the
+	// new `/networks/standard/{id}/firewall-policy` endpoint which both
+	// persists and reads the field (under name `policyLoggingEnabled`).
+	localVarPath := localBasePath + "/v2.3/networks/standard/{networkId}/firewall-policy"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)
@@ -174,7 +179,12 @@ func (a *FirewallPolicyAPIService) UpdateFirewallPolicyExecute(r ApiUpdateFirewa
 		return localVarReturnValue, nil, &GenericOpenAPIError{error: err.Error()}
 	}
 
-	localVarPath := localBasePath + "/v2.3/networks/{networkId}/policy"
+	// Hand-edited (FP-D1): swagger declares legacy `/networks/{id}/policy`
+	// but that endpoint silently discards `trace` writes — confirmed via
+	// live PUT/GET round-trip on tenant oleksandrc-test1. Migrate to the
+	// new `/networks/standard/{id}/firewall-policy` endpoint which both
+	// persists and reads the field (under name `policyLoggingEnabled`).
+	localVarPath := localBasePath + "/v2.3/networks/standard/{networkId}/firewall-policy"
 	localVarPath = strings.Replace(localVarPath, "{"+"networkId"+"}", url.PathEscape(parameterValueToString(r.networkId, "networkId")), -1)
 
 	localVarHeaderParams := make(map[string]string)

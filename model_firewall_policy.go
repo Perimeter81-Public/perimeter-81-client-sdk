@@ -30,7 +30,7 @@ type FirewallPolicy struct {
 	// an array of policy rules.
 	PolicyRules []FirewallPolicyRule `json:"policyRules"`
 	// whether the policy is traced.
-	Trace *bool `json:"trace,omitempty"`
+	Trace *bool `json:"policyLoggingEnabled,omitempty"`
 }
 
 type _FirewallPolicy FirewallPolicy
@@ -199,7 +199,7 @@ func (o FirewallPolicy) ToMap() (map[string]interface{}, error) {
 	toSerialize["id"] = o.Id
 	toSerialize["policyRules"] = o.PolicyRules
 	if !IsNil(o.Trace) {
-		toSerialize["trace"] = o.Trace
+		toSerialize["policyLoggingEnabled"] = o.Trace
 	}
 	return toSerialize, nil
 }

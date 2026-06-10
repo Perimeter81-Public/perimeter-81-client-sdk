@@ -150,3 +150,29 @@ model_ip_sec_redundant_tunnel.go
 #
 # If a future swagger update trims required itself, drop this entry.
 model_network_tunnel_ipsec_redundant.go
+
+# ═══════════════════════════════════════════════════════════════════════
+# FP-D1 — FirewallPolicy endpoint URL migration + field rename
+# ═══════════════════════════════════════════════════════════════════════
+# The swagger declares the firewall-policy endpoint as
+# `/v2.3/networks/{networkId}/policy` with field name `trace`. Verified
+# live on tenant oleksandrc-test1 that this LEGACY endpoint silently
+# accepts PUT with `trace` but does NOT persist it — subsequent GET
+# returns the old value:
+#   PUT  /networks/{id}/policy  {"trace":true}  → 200 OK
+#   GET  /networks/{id}/policy                  → "trace": false  (stale)
+# The new endpoint `/v2.3/networks/standard/{networkId}/firewall-policy`
+# uses field name `policyLoggingEnabled` and actually persists the value:
+#   PUT  /networks/standard/{id}/firewall-policy
+#        {"policyLoggingEnabled":true}          → 200 OK
+#   GET  /networks/standard/{id}/firewall-policy → "policyLoggingEnabled": true
+# We migrate both Read and Update URLs in api_firewall_policy.go to the
+# new endpoint, and rename the model's JSON tag + ToMap key from `trace`
+# to `policyLoggingEnabled`. Go field name `Trace` stays so provider
+# code doesn't churn.
+#
+# If a future swagger update points at the new endpoint and uses the
+# `policyLoggingEnabled` field name, drop these entries and let codegen
+# regenerate normally.
+api_firewall_policy.go
+model_firewall_policy.go
